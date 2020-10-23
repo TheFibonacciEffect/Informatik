@@ -67,7 +67,7 @@ bool is_valid_date(unsigned int day, unsigned int month, unsigned int year)
 {
   if (day == count_days_in_month(month, year))
   {
-    if ((1 <= month) || (month <= 12))
+    if ((1 <= month) && (month <= 12))
     {
       if (year >= 1900)
       {
@@ -83,20 +83,22 @@ bool is_valid_date(unsigned int day, unsigned int month, unsigned int year)
 // POST: returns the number of days between January 1, 1900 and this date
 unsigned int count_days(unsigned int day, unsigned int month, unsigned int year)
 {
-  assert(is_valid_date(day, month, year));
+  // assert(is_valid_date(day, month, year));
 
   int days = 0;
+  
+  year = year - 1900;
 
   for (int year_counter = 1; year_counter <= year; year_counter++)
   {
     days += count_days_in_year(year_counter);
   }
 
-  for (int month_counter = 1; month_counter <= month; month_counter++)
+  for (int month_counter = 1; month_counter < month; month_counter++)
   {
     days += count_days_in_month(month_counter, year);
   }  
-  days += day;
+  days += day - 1;
   return days;
 }
 
@@ -104,31 +106,32 @@ unsigned int count_days(unsigned int day, unsigned int month, unsigned int year)
 // POST: prints the weekday
 void print_weekday(unsigned int day, unsigned int month, unsigned int year)
 {
-  int weekday = count_days(day, month, year)%7;
+  int weekday = (count_days(day, month, year))%7;
   switch (weekday)
   {
-  case 1:
+  case 0:
     std::cout << "monday" << "\n";
     break;
-  case 2:
+  case 1:
     std::cout << "tuesday" << "\n";
     break;
-  case 3:
+  case 2:
     std::cout << "wednesday" << "\n";
     break;
-  case 4:
+  case 3:
     std::cout << "thursday" << "\n";
     break;
-  case 5:
+  case 4:
     std::cout << "friday" << "\n";
     break;
-  case 6:
+  case 5:
     std::cout << "saturday" << "\n";
     break;
-  case 7:
+  case 6:
     std::cout << "sunday" << "\n";
     break;
   default:
+    throw "whoopsie";
     break;
   }
 }
