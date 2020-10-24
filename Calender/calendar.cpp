@@ -92,12 +92,12 @@ unsigned int count_days(unsigned int day, unsigned int month, unsigned int year)
   
   year = year;
 
-  for (int year_counter = 1900; year_counter < year; year_counter++)
+  for (unsigned int year_counter = 1900; year_counter < year; year_counter++)
   {
     days += count_days_in_year(year_counter);
   }
 
-  for (int month_counter = 1; month_counter < month; month_counter++)
+  for (unsigned int month_counter = 1; month_counter < month; month_counter++)
   {
     days += count_days_in_month(month_counter, year);
   }  
