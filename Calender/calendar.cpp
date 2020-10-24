@@ -1,11 +1,12 @@
 #include "calendar.h"
 #include <iostream>
+#include <cassert>
 
 // PRE: a year greater or equal than 1900
 // POST: returns whether that year was a leap year
 bool is_leap_year(unsigned int year)
 {
-  if (year % 4 == 0 || (year % 400 == 0 && year % 100 != 0))
+  if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
   {
     return true;
   }
@@ -15,6 +16,7 @@ bool is_leap_year(unsigned int year)
   }
   
 }
+
 
 // PRE: a year greater or equal than 1900
 // POST: returns the number of days in that year
@@ -74,8 +76,9 @@ bool is_valid_date(unsigned int day, unsigned int month, unsigned int year)
         return true;
       }
     }
-    
   }
+  // took me 3 hours to get that I am supposed to output this XD
+  std::cout << "invalid date" << "\n";
   return false;
 }
 
@@ -87,9 +90,9 @@ unsigned int count_days(unsigned int day, unsigned int month, unsigned int year)
 
   int days = 0;
   
-  year = year - 1900;
+  year = year;
 
-  for (int year_counter = 1; year_counter <= year; year_counter++)
+  for (int year_counter = 1900; year_counter < year; year_counter++)
   {
     days += count_days_in_year(year_counter);
   }
@@ -106,7 +109,22 @@ unsigned int count_days(unsigned int day, unsigned int month, unsigned int year)
 // POST: prints the weekday
 void print_weekday(unsigned int day, unsigned int month, unsigned int year)
 {
+  assert(is_valid_date(10,7,2001));
+  assert(is_valid_date(45,55,3000)==false);
+  assert(is_leap_year(2020));
+  assert(is_leap_year(2000));
+  assert(count_days_in_month(10,2020)==31);
+  assert(count_days_in_month(2,2020)==29);
+
   int weekday = (count_days(day, month, year))%7;
+
+  {
+    int day = 23;
+    int month = 10;
+    int year = 2020;
+    assert(count_days(day, month, year)%7 == 4);
+  }
+
   switch (weekday)
   {
   case 0:
