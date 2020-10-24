@@ -64,12 +64,12 @@ unsigned int count_days_in_month(unsigned int month, unsigned int year)
 
 // POST: returns whether the given values represent a valid date
 bool is_valid_date(unsigned int day, unsigned int month, unsigned int year)
-{
-  if (day == count_days_in_month(month, year))
+{ 
+  if (year >= 1900)
   {
     if ((1 <= month) && (month <= 12))
     {
-      if (year >= 1900)
+      if ((1 <= day) &&(day <= count_days_in_month(month, year)))
       {
         return true;
       }
