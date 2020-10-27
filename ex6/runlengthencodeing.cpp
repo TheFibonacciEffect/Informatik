@@ -31,7 +31,7 @@ void encoder(int byte)
     {
       std::cout << count << " " << byte_old << " ";
       encoder(byte);
-      return;      
+      return;
     }
 
   } while (true);
@@ -68,12 +68,12 @@ void decode()
       std::cout << "error ";
       return;
     }
-    for(int i = 0; i < counter; i++)
+    for (int i = 0; i < counter; i++)
     {
       std::cout << byte << " ";
     }
   }
-return;
+  return;
 }
 
 int main()
@@ -87,7 +87,8 @@ int main()
   }
   else
   {
-    std::cout << "0" << " ";
+    std::cout << "0"
+              << " ";
     decode();
   }
   return 0;
