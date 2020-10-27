@@ -7,27 +7,22 @@ void encoder(int byte)
     return;
   }
   int count = 0;
-
-  // int byte;
   int byte_old;
   do
   {
     byte_old = byte;
     std::cin >> byte;
 
-    // std::cout << byte;
-    // std::cout << byte_old;
-
     if (byte > 255 || byte < -1)
     {
-      std::cout << "error";
+      std::cout << "error ";
       return;
     }
     count++;
 
     if (byte != byte_old)
     {
-      std::cout << count << byte_old;
+      std::cout << count << " " << byte_old << " ";
       encoder(byte);
       return;
     }
@@ -40,7 +35,7 @@ void encoder(int byte)
 
 void encode()
 {
-  std::cout << 2;
+  std::cout << 1 << " ";
   int byte;
   std::cin >> byte;
   encoder(byte);
@@ -60,7 +55,7 @@ int main()
   int task;
   std::cin >> task;
 
-  if (task == 1)
+  if (task == 0)
   {
     encode();
   }
