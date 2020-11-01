@@ -17,7 +17,7 @@
 			"problemMatcher": [
 				"$gcc"
 			],
-			"group": {"kind":"build","isDefault": true}
+			"group": {"isDefault": true,"kind": "build"}
 		}
 	]
 }
