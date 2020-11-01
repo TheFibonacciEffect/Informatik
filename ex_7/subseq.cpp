@@ -61,6 +61,25 @@ Vec(Vec(int)) split_increase(const Vec(int)& v)
   return out;
 }
 
+Vec(int) find_longest(const Vec(Vec(int))& v)
+{
+  for (Vec(int) i : v)
+  {
+    bool is_longest = true;
+    for (Vec(int) j : v)
+    {
+      if (i.size() <= j.size())
+      {
+        is_longest = false;
+      }
+      if (is_longest)
+      {
+        return i;
+      }
+    }
+  }
+  throw "error";
+}
 
 Vec(int) findIncrease(Vec(int)& v)
 {
