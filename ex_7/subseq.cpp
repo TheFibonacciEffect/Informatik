@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <cassert>
 #define Vec(type) std::vector<type>
 #define print(str) (std::cout << str << "\n")
 
@@ -31,12 +32,12 @@ void readVector( Vec(int)& vec )
   // keep trailing terminator, it will be useful later
 }
 
-//PRE: a vector with a terminator at the end
+//PRE: a vector with a negative terminator at the end
 
-Vec(Vec(int)) split_increase(Vec(int)& v)
+Vec(Vec(int)) split_increase(const Vec(int)& v)
 {
-  print("split");
-  
+  assert(v.at(v.size()-1) < 0);
+
   // initize out with lenght 1 by default
   Vec(Vec(int)) out(1);
   
@@ -50,13 +51,13 @@ Vec(Vec(int)) split_increase(Vec(int)& v)
       continue;
     }
     out.at(out.size()-1).push_back(v.at(i));
+    if (v.at(i + 1) < 0)
+    {
+      break;
+    }
     out.push_back({});
     i++;
   }
-  
-  // remove trailing vector
-  out.pop_back();
-  
   return out;
 }
 
@@ -68,6 +69,7 @@ Vec(int) findIncrease(Vec(int)& v)
 
   Vec(Vec(int)) split;
   split = split_increase(v);
+  std::cout << split;
   // w = find_longest(split);
   return w;
 }
