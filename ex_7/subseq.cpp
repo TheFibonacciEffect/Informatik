@@ -3,21 +3,6 @@
 #include <cassert>
 #define Vec(type) std::vector<type>
 
-// // c++ doesnt seem to have a standard function to print vectors and matricies, so I am gonna go ahead and define them here
-// std::ostream& operator<<(std::ostream &out, std::vector<std::vector<int>> const&v) {
-//   for(auto &&i : v) {
-//     for(auto &&j : i) out << j << " ";
-//     out << std::endl;
-//   }
-//   return out;
-// }
-
-// std::ostream& operator<<(std::ostream &out, Vec(int) const&v) {
-//   for(auto &&j : v) out << j << " ";
-//     out << std::endl;
-//   return out;
-// }
-
 void readVector( Vec(int)& vec )  
 {
   int integer = 0;
@@ -92,7 +77,6 @@ Vec(int) findIncrease(Vec(int)& v)
 
   Vec(Vec(int)) split;
   split = split_increase(v);
-  // std::cout << split;
   w = find_longest(split);
   return w;
 }
@@ -116,3 +100,18 @@ int main()
 
     return 0;
 }
+
+// // c++ doesnt seem to have a standard function to print vectors and matricies, so I am gonna go ahead and define them here
+// std::ostream& operator<<(std::ostream &out, std::vector<std::vector<int>> const&v) {
+//   for(auto &&i : v) {
+//     for(auto &&j : i) out << j << " ";
+//     out << std::endl;
+//   }
+//   return out;
+// }
+
+// std::ostream& operator<<(std::ostream &out, Vec(int) const&v) {
+//   for(auto &&j : v) out << j << " ";
+//     out << std::endl;
+//   return out;
+// }
