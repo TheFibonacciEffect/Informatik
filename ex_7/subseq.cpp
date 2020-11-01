@@ -2,22 +2,21 @@
 #include <iostream>
 #include <cassert>
 #define Vec(type) std::vector<type>
-#define print(str) (std::cout << str << "\n")
 
-// c++ doesnt seem to have a standard function to print vectors and matricies, so I am gonna go ahead and define them here
-std::ostream& operator<<(std::ostream &out, std::vector<std::vector<int>> const&v) {
-  for(auto &&i : v) {
-    for(auto &&j : i) out << j << " ";
-    out << std::endl;
-  }
-  return out;
-}
+// // c++ doesnt seem to have a standard function to print vectors and matricies, so I am gonna go ahead and define them here
+// std::ostream& operator<<(std::ostream &out, std::vector<std::vector<int>> const&v) {
+//   for(auto &&i : v) {
+//     for(auto &&j : i) out << j << " ";
+//     out << std::endl;
+//   }
+//   return out;
+// }
 
-std::ostream& operator<<(std::ostream &out, Vec(int) const&v) {
-  for(auto &&j : v) out << j << " ";
-    out << std::endl;
-  return out;
-}
+// std::ostream& operator<<(std::ostream &out, Vec(int) const&v) {
+//   for(auto &&j : v) out << j << " ";
+//     out << std::endl;
+//   return out;
+// }
 
 void readVector( Vec(int)& vec )  
 {
@@ -27,13 +26,19 @@ void readVector( Vec(int)& vec )
     std::cin >> integer;
     vec.push_back(integer);
   }
-  // remove trailing terminator
-  // vec.pop_back();
   // keep trailing terminator, it will be useful later
 }
 
-//PRE: a vector with a negative terminator at the end
+void print_vector(Vec(int) v)
+{
+  for (int i: v)
+  {
+    std::cout << i << " ";
+  }
+}
 
+// PRE : a vector with a negative terminator at the end
+// POST: a matrix, where every row is a vector with an increasing subsequence
 Vec(Vec(int)) split_increase(const Vec(int)& v)
 {
   assert(v.at(v.size()-1) < 0);
@@ -68,28 +73,27 @@ Vec(int) find_longest(const Vec(Vec(int))& v)
     bool is_longest = true;
     for (Vec(int) j : v)
     {
-      if (i.size() <= j.size())
+      if (i.size() < j.size())
       {
         is_longest = false;
       }
+    }
       if (is_longest)
       {
         return i;
       }
-    }
   }
   throw "error";
 }
 
 Vec(int) findIncrease(Vec(int)& v)
 {
-  print("find increase");
   Vec(int) w(0);
 
   Vec(Vec(int)) split;
   split = split_increase(v);
-  std::cout << split;
-  // w = find_longest(split);
+  // std::cout << split;
+  w = find_longest(split);
   return w;
 }
 
@@ -99,15 +103,16 @@ int main()
     
     readVector(values);
     
-    if (values.size() == 0)
+    if (values.size() == 1)
     {
-      print("error");
+      std::cout << "empty";
       return 0;
     }
     
     Vec(int) increase = findIncrease(values);
 
-    std::cout << increase;
+    print_vector(increase);
+    
 
     return 0;
 }
